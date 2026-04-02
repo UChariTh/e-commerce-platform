@@ -92,17 +92,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || origin.includes("vercel.app") || origin.includes("localhost")) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "https://e-commerce-platform-theta-silk.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
-}));
+}));;
 
 // app.use(
 //     cors({
