@@ -93,7 +93,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://e-commerce-platform-theta-silk.vercel.app",
+    origin: true,
     credentials: true,
   })
 );
