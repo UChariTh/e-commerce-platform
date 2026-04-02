@@ -46,8 +46,9 @@ app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 
 app.get("/test", (req, res) => {
-    res.json({ message: "Backend is updated and working!" });
-});
+    console.log("Test route hit!"); 
+    res.status(200).send("Backend is 100% Working!");
+});;
 
 // API Routes
 app.use("/api/auth", authRoutes);
