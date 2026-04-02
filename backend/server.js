@@ -29,8 +29,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
     "https://e-commerce-platform-theta-silk.vercel.app",
     "https://e-commerce-platform-theta-silk.vercel.app/", 
-    "http://localhost:5173",
-    "http://127.0.0.1:5173"
+    "http://localhost:5173"
 ];
 
 app.use(cors({
@@ -38,8 +37,7 @@ app.use(cors({
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            console.log("Blocked by CORS:", origin); 
-            callback(new Error("Not allowed by CORS"));
+            callback(new Error('Not allowed by CORS'));
         }
     },
     credentials: true,
