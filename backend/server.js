@@ -91,12 +91,12 @@ import { connectDB } from "./lib/db.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: true,
+app.use(cors({
+    origin: "https://e-commerce-platform-theta-silk.vercel.app", 
     credentials: true,
-  })
-);
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 // app.use(
 //     cors({
