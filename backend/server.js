@@ -33,24 +33,11 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        
-        // Check if the origin is in our allowed list or is a vercel preview deployment
-        if (allowedOrigins.indexOf(origin) !== -1 || origin.includes("vercel.app")) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "https://e-commerce-platform-theta-silk.vercel.app", // අන්තිමට / ලකුණ නැති බව බලන්න
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
-}));
-
-// Handle pre-flight requests globally
-app.options("*", cors());
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"] // X-Requested-With එකත් එකතු කරන්න
+}));;
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
