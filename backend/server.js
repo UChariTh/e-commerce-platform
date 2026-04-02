@@ -51,8 +51,12 @@ app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
 
 app.get("/test", (req, res) => {
-    console.log("Test route hit successfully!"); 
-    res.status(200).json({ message: "Backend is 100% Working!" });
+    res.json({ 
+        message: "Backend Check",
+        version: "1.0.5", 
+        status: "Success",
+        time: new Date().toISOString()
+    });
 });
 
 app.get("/", (req, res) => {
