@@ -28,16 +28,24 @@ const PORT = process.env.PORT || 5000;
 // --- FINAL CORS CONFIGURATION ---
 const allowedOrigins = [
     "https://e-commerce-platform-theta-silk.vercel.app",
+    "https://e-commerce-platform-theta-silk.vercel.app/", 
     "http://localhost:5173",
     "http://127.0.0.1:5173"
 ];
 
 app.use(cors({
-    origin: "https://e-commerce-platform-theta-silk.vercel.app", // අන්තිමට / ලකුණ නැති බව බලන්න
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.log("Blocked by CORS:", origin); 
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"] // X-Requested-With එකත් එකතු කරන්න
-}));;
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+}));
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
