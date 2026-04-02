@@ -25,29 +25,14 @@ import { connectDB } from "./lib/db.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// --- FINAL CORS CONFIGURATION ---
-const allowedOrigins = [
-    "https://e-commerce-platform-theta-silk.vercel.app",
-    "https://e-commerce-platform-theta-silk.vercel.app/",
-    "http://localhost:5173"
-];
-
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+app.use(cors({
+    origin: "https://e-commerce-platform-theta-silk.vercel.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-    optionsSuccessStatus: 200 
-};
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
+}));
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.options("*", cors());
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
